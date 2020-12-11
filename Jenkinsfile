@@ -26,5 +26,12 @@ stage('Build') {
       }
    }
 
+    stage('deploy') {
+        steps {
+        azureWebAppPublish azureCredentialsId: params.azure_cred_id,
+            resourceGroup: "myResourceGroup", appName: "jenkinssample976", sourceDirectory: "bin/Release/netcoreapp2.2/publish/"
+        }
+    }
+
  }
 }
