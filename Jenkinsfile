@@ -6,7 +6,7 @@ dotnet = 'path\\to\\dotnet.exe'
 stages {
 stage ('Checkout') {
             steps {
-                 git url: 'https://github.com/arjunachari12/pipelines-dotnet-core',branch: 'master'
+                 git url: 'https://github.com/Smrigarg/pipelines-dotnet-core',branch: 'master'
             }
 }
 stage ('Restore PACKAGES') {     
@@ -25,13 +25,6 @@ stage('Build') {
            bat 'dotnet publish pipelines-dotnet-core.csproj -c Release'
       }
    }
-
-    stage('deploy') {
-        steps {
-        azureWebAppPublish azureCredentialsId: params.azure_cred_id,
-            resourceGroup: "myResourceGroup", appName: "jenkinssample", sourceDirectory: "bin/Release/netcoreapp2.2/publish/"
-        }
-    }
 
  }
 }
